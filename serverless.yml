@@ -28,7 +28,7 @@ provider:
   environment:
     STAGE: ${self:provider.stage}
     SERVICE: ${self:service}
-    DB_HOST: # get host from config below??
+    DB_HOST: ${self:outputs.RDSString}
     DB_PORT: 5432
     DB_NAME: 
     DB_USER:
@@ -56,11 +56,23 @@ package:
 functions:
 
   User:
-    # ?
+    # ? Our function should inherit the additional configuration from the above provider information
+    handler: handler.User
+    description: User Functions
+    
     
 resources:
   Resources:
     # DB cluster??
-    
+    RDSCluster:
+      Type: AWS::RDS::DBInstance
+      DBInstanceIdentifier: MyChallengeDB
+outputs:
+  Outputs:
+  RDSString:
+    Description: The ID of the VPC
+    Value: !GetAtt RDSCluster.Endpoint.Address
+    Export:
+      Name: !Sub "${AWS::StackName}-RDSString"
 
     
