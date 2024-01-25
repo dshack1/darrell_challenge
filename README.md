@@ -1,4 +1,4 @@
-# Sportradar DevOps Challenge - Darrell Shack
+# DevOps Challenge - Darrell Shack
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
